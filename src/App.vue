@@ -13,20 +13,24 @@ const monedas = ref([
 <template>
   <div class="contenedor">
     <h1 class="titulo">Cotizador de <span>Criptomonedas</span></h1>
-  </div>
-  <div class="contenido">
-    <form class="formulario">
-        <div class="campo">
-            <label for="moneda">Moneda:</label>
-            <select id="moneda">
-                
-            </select>
+  
+    <div class="contenido">
+        <form class="formulario">
+            <div class="campo">
+                <label for="moneda">Moneda:</label>
+                <select id="moneda">
+                    <option value="">-- Selecciona --</option>
+                    <option 
+                        v-for="moneda in monedas" 
+                        :value="moneda.codigo"
+                    >{{ moneda.texto }}</option>
+                </select>
 
-        </div>
-    </form>
+            </div>
+        </form>
 
-  </div>
-
+    </div>
+</div>
 </template>
 
 
