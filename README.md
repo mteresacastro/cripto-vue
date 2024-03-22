@@ -33,4 +33,4 @@
 * Ejecuta npm run dev para iniciar el servidor de desarrollo.
 * Ve a tu directorio local para ver la aplicación en acción.
 
-¡Espero que encuentres útil este cotizador de criptomonedas! Si tienes alguna pregunta o sugerencia, no dudes en compartirla:smile:
+¡Espero que encuentres útil este cotizador de criptomonedas! Si tienes alguna pregunta o sugerencia, no dudes en compartirla :smile:
