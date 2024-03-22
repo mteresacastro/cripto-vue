@@ -27,10 +27,10 @@
   
 ## Instalación y Ejecución
 
-*Clona este repositorio.
-*Abre el proyecto en tu editor de código favorito.
-*Ejecuta npm install para instalar las dependencias.
-*Ejecuta npm run dev para iniciar el servidor de desarrollo.
-*Ve a tu directorio local para ver la aplicación en acción.
+* Clona este repositorio.
+* Abre el proyecto en tu editor de código favorito.
+* Ejecuta npm install para instalar las dependencias.
+* Ejecuta npm run dev para iniciar el servidor de desarrollo.
+* Ve a tu directorio local para ver la aplicación en acción.
 
 ¡Espero que encuentres útil este cotizador de criptomonedas! Si tienes alguna pregunta o sugerencia, no dudes en compartirla.:smile:
