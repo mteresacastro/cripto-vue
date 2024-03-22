@@ -36,7 +36,17 @@ onMounted(() =>{
                         :value="moneda.codigo"
                     >{{ moneda.texto }}</option>
                 </select>
-
+            </div>
+            <div class="campo">
+                <label for="crypto">Crypomoneda:</label>
+                <select id="crypto">
+                    <option value="">-- Selecciona --</option>
+                    <option 
+                        v-for="cryptomoneda in cryptomonedas" 
+                        :value="cryptomoneda.CoinInfo.Name"
+                    >{{ cryptomoneda.CoinInfo.FullName }}</option>
+                </select>
+                <input type="submit" value="Cotizar" />
             </div>
         </form>
 
