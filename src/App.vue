@@ -17,6 +17,8 @@
         criptomoneda:''
     })
 
+    const cotizacion = ref({}) // usamos ref porque aunque sea un objeto, no sabemos qué viene de la API. Usamos reactive para informacion que controlamos.
+
     onMounted(() =>{
         const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD'
         fetch(url)
@@ -33,7 +35,19 @@
         return
        }
        error.value = ''
-       console.log('cotizando...')
+       obtenerCotizacion()
+    }
+
+    const obtenerCotizacion = async () => {
+
+        //inyectamos el valor elegido por el usuario en la url usando template string
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cotizar.criptomoneda}&tsyms=${cotizar.moneda}`
+        
+        const respuesta = await fetch(url)
+        const data = await respuesta.json()
+
+        console.log(data.DISPLAY[cotizar.criptomoneda][cotizar.moneda]) //con la sintaxis de corchetes inyecta la variable
+        cotizacion.value = data.DISPLAY[cotizar.criptomoneda][cotizar.moneda]
     }
 
 </script>
@@ -78,6 +92,10 @@
                 <input type="submit" value="Cotizar" />
             </div>
         </form>
+        
+        <div class="contenedor-resultado">
+
+        </div>
 
     </div>
 </div>
