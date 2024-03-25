@@ -1,39 +1,17 @@
 <script setup>
-    import {ref, reactive, onMounted, computed} from 'vue'
+    import {ref, reactive, computed} from 'vue'
     import Alerta from './components/Alerta.vue'
     import Spinner from './components/Spinner.vue'
     import useCripto from './composable/useCripto'
 
-    const {cotizarMoneda} = useCripto()
+    const { monedas, criptomonedas, cargando, cotizacion, obtenerCotizacion, mostrarResultado } = useCripto()
+
     
-    cotizarMoneda();
-
-    const monedas = ref([
-        { codigo: 'USD', texto: 'Dolar de Estados Unidos'},
-        { codigo: 'MXN', texto: 'Peso Mexicano'},
-        { codigo: 'EUR', texto: 'Euro'},
-        { codigo: 'GBP', texto: 'Libra Esterlina'},
-    ])
-
-    const criptomonedas = ref([])
     const error = ref('')
 
     const cotizar = reactive({
         moneda:'',
         criptomoneda:''
-    })
-
-    const cotizacion = ref({}) // usamos ref porque aunque sea un objeto, no sabemos qué viene de la API. Usamos reactive para informacion que controlamos.
-
-    const cargando = ref(false)
-
-    onMounted(() =>{
-        const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD'
-        fetch(url)
-            .then(respuesta => respuesta.json())
-            .then(({Data}) =>{
-                criptomonedas.value = Data
-            })
     })
 
     const cotizarCripto = () => {
@@ -43,29 +21,9 @@
         return
        }
        error.value = ''
-       obtenerCotizacion()
+       obtenerCotizacion(cotizar)
     }
 
-    const obtenerCotizacion = async () => {
-
-        cargando.value = true
-        cotizacion.value = {}
-
-        //inyectamos el valor elegido por el usuario en la url usando template string
-        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cotizar.criptomoneda}&tsyms=${cotizar.moneda}`
-        
-        const respuesta = await fetch(url)
-        const data = await respuesta.json()
-        //con la sintaxis de corchetes inyecta la variable
-        cotizacion.value = data.DISPLAY[cotizar.criptomoneda][cotizar.moneda]
-
-        cargando.value = false
-    }
-
-    const mostrarResultado = computed(() => {
-        //intento comprobar si el objeto está vacío o no
-        return Object.values(cotizacion.value).length > 0 ? true : false
-    })
 
 </script>
 
