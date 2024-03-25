@@ -4,8 +4,8 @@
     import Spinner from './components/Spinner.vue'
     import useCripto from './composable/useCripto'
 
-    const { cotizarMoneda } = useCripto
-
+    const {cotizarMoneda} = useCripto()
+    
     cotizarMoneda();
 
     const monedas = ref([
